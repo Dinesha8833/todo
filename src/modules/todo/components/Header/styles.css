@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: #042D4D;
+  color: #fff;
+}
+
+.title {
+  margin: 0px 16px;
+  font-weight: lighter;
+}
+
+.addButton {
+  height: 100%;
+  width: 50px;
+  color: #fff;
+  border: none;
+  background: none;
+  font-size: 30px;
+  font-weight: lighter;
+  padding: 0px;
+  outline: none;
+}
