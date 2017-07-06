@@ -10,7 +10,7 @@ const todos = (state = initialState, action) => {
         {
           id: action.id,
           text: action.text,
-          checked: action.id % 2 === 0,
+          checked: false,
         },
       ];
     case EDIT_TODO:
@@ -19,10 +19,7 @@ const todos = (state = initialState, action) => {
           : todo
       ));
     case DELETE_TODO:
-      return state.map(todo => (todo.id === action.id
-          ? { ...todo, text: action.text, checked: action.checked }
-          : todo
-      ));
+      return state.filter(todo => (todo.id !== action.id));
     default:
       return state;
   }

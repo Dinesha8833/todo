@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from './components/Header';
 import AddToDoForm from './components/AddToDoForm';
 import ToDoList from './components/ToDoList';
-import { addToDo } from './actions';
+import { addToDo, editToDo, deleteToDo } from './actions';
 
 const style = require('./styles.css');
 
@@ -12,13 +12,19 @@ const ToDo = props => (
   <div className={style.container}>
     <Header />
     <AddToDoForm onAddToDo={props.onAddToDo} />
-    <ToDoList todos={props.todos} />
+    <ToDoList
+      todos={props.todos}
+      onEditToDo={props.onEditToDo}
+      onDeleteToDo={props.onDeleteToDo}
+    />
   </div>
 );
 
 ToDo.propTypes = {
   todos: PropTypes.array.isRequired,
   onAddToDo: PropTypes.func.isRequired,
+  onEditToDo: PropTypes.func.isRequired,
+  onDeleteToDo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -26,7 +32,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddToDo: todo => dispatch(addToDo(todo)),
+  onAddToDo: text => dispatch(addToDo(text)),
+  onEditToDo: (id, text, checked) => dispatch(editToDo(id, text, checked)),
+  onDeleteToDo: id => dispatch(deleteToDo(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDo);

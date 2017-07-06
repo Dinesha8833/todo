@@ -8,12 +8,29 @@
 .titleContainer {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .buttonContainer {
   display: flex;
   align-items: center;
   height: 100%;
+}
+
+.inputText {
+  height: 30px;
+  margin-right: 16px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.showText {
+  width: 100%;
 }
 
 .textChecked, .textUnChecked {
@@ -30,7 +47,6 @@
 
 .checked {
   height: 100%;
-  width: 50px;
   border: none;
   background: none;
   padding: 0px;
