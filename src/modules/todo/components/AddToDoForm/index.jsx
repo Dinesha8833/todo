@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import linkState from '../../../../utils/linkState';
 
 const styles = require('./styles.css');
@@ -18,6 +18,7 @@ class AddToDoForm extends React.Component {
   onSubmit(event) {
     const isEnterKey = (event.which === 13);
     if (isEnterKey && this.state.toDoText.length > 0) {
+      this.props.onAddToDo(this.state.toDoText);
       this.setState({ toDoText: '' });
     }
   }
@@ -36,5 +37,9 @@ class AddToDoForm extends React.Component {
     );
   }
 }
+
+AddToDoForm.propTypes = {
+  onAddToDo: PropTypes.func.isRequired,
+};
 
 export default AddToDoForm;
