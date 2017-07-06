@@ -1,4 +1,4 @@
-import { ADD_TODO } from '../actions/constants';
+import { ADD_TODO, EDIT_TODO, DELETE_TODO } from '../actions/constants';
 
 const initialState = [];
 
@@ -10,9 +10,19 @@ const todos = (state = initialState, action) => {
         {
           id: action.id,
           text: action.text,
-          completed: false,
+          checked: action.id % 2 === 0,
         },
       ];
+    case EDIT_TODO:
+      return state.map(todo => (todo.id === action.id
+          ? { ...todo, text: action.text, checked: action.checked }
+          : todo
+      ));
+    case DELETE_TODO:
+      return state.map(todo => (todo.id === action.id
+          ? { ...todo, text: action.text, checked: action.checked }
+          : todo
+      ));
     default:
       return state;
   }

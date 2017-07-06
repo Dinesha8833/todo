@@ -11,9 +11,11 @@ export const addToDo = (text) => {
   };
 };
 
-export const editToDo = todo => ({
+export const editToDo = (id, text, checked) => ({
   type: EDIT_TODO,
-  todo,
+  id,
+  text,
+  checked,
 });
 
 export const deleteToDo = id => ({

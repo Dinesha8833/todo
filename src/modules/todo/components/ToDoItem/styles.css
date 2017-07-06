@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.textChecked, .textUnChecked {
+  font-weight: normal;
+}
+
+.textChecked {
+  color: #6E6E6E;
+}
+
+.textUnChecked {
+  color: #080808;
+}
+
+.checked {
+  height: 100%;
+  width: 50px;
+  border: none;
+  background: none;
+  padding: 0px;
+  outline: none;
+}
+
+.checkedIcon, .unCheckedIcon, .deleteIcon {
+  margin: 0px 10px;
+  font-size: 23px;
+}
+
+.checkedIcon {
+  color: #D1EABE;
+}
+
+.unCheckedIcon {
+  color: #C9C9C9;
+}
+
+.deleteIcon {
+  color: #C9C9C9;
+}
+
+.delete {
+  height: 100%;
+  width: 50px;
+  border: none;
+  background: none;
+  padding: 0px;
+  outline: none;
+}
