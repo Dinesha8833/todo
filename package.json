@@ -1,7 +1,7 @@
 {
-  "name": "coupons",
+  "name": "ToDo",
   "version": "1.0.0",
-  "description": "coupons management",
+  "description": "ToDo App",
   "main": "server.js",
   "scripts": {
     "precommit": "npm run lint",
