@@ -1,7 +1,7 @@
 import api from './api';
 import getHeaders from './headers';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://passion-backend.herokuapp.com/api/v1';
 
 const getCompleteURL = url => `${BASE_URL}${url}`;
 
@@ -12,6 +12,4 @@ const apiCall = (url, method, body) => api(
   body,
 );
 
-export default {
-  apiCall,
-};
+export default apiCall;

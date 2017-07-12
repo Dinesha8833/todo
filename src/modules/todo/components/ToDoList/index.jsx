@@ -4,7 +4,7 @@ import ToDoItem from '../ToDoItem';
 
 const style = require('./styles.css');
 
-const ToDoList = ({ todos, onEditToDo, onDeleteToDo }) => (
+const ToDoList = ({ todos, onEditToDo, onDeleteToDo, onComplete }) => (
   <div className={style.container}>
     {
       todos.map(todo => (
@@ -13,6 +13,7 @@ const ToDoList = ({ todos, onEditToDo, onDeleteToDo }) => (
           todo={todo}
           onEditToDo={onEditToDo}
           onDeleteToDo={onDeleteToDo}
+          onComplete={onComplete}
         />
       ))
     }
@@ -23,6 +24,7 @@ ToDoList.propTypes = {
   todos: PropTypes.array.isRequired,
   onEditToDo: PropTypes.func.isRequired,
   onDeleteToDo: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
 };
 
 export default ToDoList;

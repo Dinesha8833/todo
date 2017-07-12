@@ -11,7 +11,7 @@ class ToDoItem extends React.Component {
 
     this.state = {
       isEditing: false,
-      toDoText: props.todo.text,
+      toDoText: props.todo.title,
     };
 
     this.onEditingClick = this.onEditingClick.bind(this);
@@ -27,18 +27,22 @@ class ToDoItem extends React.Component {
 
   onEditingClick() {
     if (this.state.isEditing) {
-      this.props.onEditToDo(this.props.todo.id, this.state.toDoText, this.props.todo.checked);
+      this.props.onEditToDo({
+        todo_id: this.props.todo.todo_id,
+        id: this.props.todo.id,
+        title: this.state.toDoText,
+      });
     }
 
     this.setState({ isEditing: !this.state.isEditing });
   }
 
   onCheckedClick() {
-    this.props.onEditToDo(this.props.todo.id, this.props.todo.text, !this.props.todo.checked);
+    this.props.onComplete(this.props.todo);
   }
 
   onDeleteClick() {
-    this.props.onDeleteToDo(this.props.todo.id);
+    this.props.onDeleteToDo(this.props.todo);
   }
 
   render() {
@@ -47,9 +51,9 @@ class ToDoItem extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.titleContainer}>
-          <button className={styles.checked} onClick={this.onCheckedClick}>
+          <button className={styles.checked} onClick={this.onCheckedClick} disabled={todo.aasm_state === 'completed'}>
             {
-              todo.checked ?
+              todo.aasm_state === 'completed' ?
                 <i className={`fa fa-check-circle ${styles.checkedIcon}`} /> :
                 <i className={`fa fa-check-circle-o ${styles.unCheckedIcon}`} />
             }
@@ -63,14 +67,18 @@ class ToDoItem extends React.Component {
           />
           <div className={this.state.isEditing ? styles.hide : styles.showText}>
             <h5 className={todo.checked ? styles.textChecked : styles.textUnChecked}>
-              {todo.text}
+              {this.state.toDoText}
             </h5>
           </div>
         </div>
-        { !todo.checked &&
+        { todo.aasm_state !== 'completed' &&
           <div className={styles.buttonContainer}>
             <button className={styles.delete} onClick={this.onEditingClick}>
-              <i className={`fa fa-pencil-square-o ${styles.deleteIcon}`} />
+              <i
+                className={`${this.state.isEditing ?
+                  'fa fa-floppy-o' :
+                  'fa fa-pencil-square-o'} ${styles.deleteIcon}`}
+              />
             </button>
             <button className={styles.delete} onClick={this.onDeleteClick}>
               <i className={`fa fa-trash ${styles.deleteIcon}`} />
@@ -86,6 +94,7 @@ ToDoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   onEditToDo: PropTypes.func.isRequired,
   onDeleteToDo: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
 };
 
 export default ToDoItem;

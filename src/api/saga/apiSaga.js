@@ -1,9 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { apiCall } from '../apiInterface';
-import { API_ACTION } from '../actions/apiActions';
+import apiCall from '../apiInterface';
+import { API_ACTION } from '../actions';
 
 function* manageResponse(action, response) {
-  if (response.error) {
+  if (response.success) {
     yield put({ type: action.types[2], data: response });
   } else {
     yield put({ type: action.types[1], data: response });
